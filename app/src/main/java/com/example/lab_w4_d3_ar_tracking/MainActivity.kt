@@ -63,9 +63,13 @@ class MainActivity : AppCompatActivity(), Scene.OnUpdateListener {
 
     private fun createModel(anchor: Anchor?) {
 
-        // (CC BY 4.0) Dontaed by Cesium  for glTF testing.
-        val uri = Uri.parse(
+        // (CC BY 4.0) Donated by Cesium  for glTF testing.
+/*        val uri = Uri.parse(
             "https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/CesiumMan/glTF/CesiumMan.gltf"
+        )*/
+
+        val uri = Uri.parse(
+            "https://raw.githubusercontent.com/thelockymichael/gltf-Sample_models/main/gltf-models/scene.gltf"
         )
 
         val renderableFuture = ModelRenderable.builder()
@@ -78,7 +82,7 @@ class MainActivity : AppCompatActivity(), Scene.OnUpdateListener {
                     .setRecenterMode(RenderableSource.RecenterMode.ROOT)
                     .build()
             )
-            .setRegistryId("CesiumMan").build()
+            .setRegistryId("scene").build()
 
         renderableFuture.thenAccept { placeModel(it, anchor) }
         renderableFuture.exceptionally {
