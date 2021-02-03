@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Lab_w4_d3_AR_Tracking</string>
+    <string name="fit_image_to_scan">Fit image to scan</string>
+    <string name="detected_img_need_more_info">Fit image to scan</string>
+    <string name="track_stop">Fit image to scan</string>
+    <string name="hello">Hello world</string>
+</resources>

@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "Lab_w4_d3_AR_Tracking"
