@@ -14,6 +14,7 @@ import com.google.ar.sceneform.assets.RenderableSource
 import com.google.ar.sceneform.rendering.ModelRenderable
 
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity(), Scene.OnUpdateListener {
     private lateinit var arFragment: CustomArFragment
@@ -68,11 +69,22 @@ class MainActivity : AppCompatActivity(), Scene.OnUpdateListener {
             "https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/CesiumMan/glTF/CesiumMan.gltf"
         )*/
 
+        try {
+
         val uri = Uri.parse(
-            "https://raw.githubusercontent.com/thelockymichael/gltf-Sample_models/main/gltf-models/scene.gltf"
+            "http://raw.githubusercontent.com/thelockymichael/gltf-Sample_models/main/2.0/untitled.gltf"
         )
 
-        val renderableFuture = ModelRenderable.builder()
+/*        val renderableFuture = ModelRenderable.builder()
+            .setSource(this, Uri.parse("angel_statue"))
+            .build()*/
+
+            val renderableFuture = ModelRenderable.builder()
+                .setSource(this, Uri.parse("model.sfb"))
+                .setRegistryId("model.sfb")
+                .build()
+
+/*        val renderableFuture = ModelRenderable.builder()
             .setSource(
                 this, RenderableSource.builder().setSource(
                     this,
@@ -82,7 +94,9 @@ class MainActivity : AppCompatActivity(), Scene.OnUpdateListener {
                     .setRecenterMode(RenderableSource.RecenterMode.ROOT)
                     .build()
             )
-            .setRegistryId("scene").build()
+                //https://github.com/thelockymichael/gltf-Sample_models/tree/main/2.0
+            .setRegistryId("https://github.com/thelockymichael/gltf-Sample_models/tree/main/2.0/untitled.gltf")
+            .build()*/
 
         renderableFuture.thenAccept { placeModel(it, anchor) }
         renderableFuture.exceptionally {
@@ -90,6 +104,11 @@ class MainActivity : AppCompatActivity(), Scene.OnUpdateListener {
             Log.e("DBG", "renderableFuture error: ${it.localizedMessage}")
             null
         }
+
+        } catch (e: Exception){
+            e.printStackTrace()
+        }
+
     }
 
     private fun placeModel(model: ModelRenderable?, anchor: Anchor?) {
